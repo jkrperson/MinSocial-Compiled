@@ -1,12 +1,17 @@
 <script>
-  export let mentions;
-  export let hoverMentions;
-  export let dm;
-  export let hoverDM;
-  export let reply;
-  export let hoverReply;
-  export let logout;
-  export let hoverLogout;
+  // Used to help svelte distinguish between pages
+  export let lastPageAccessed;
+
+  // Icons for the navbar
+  import ClickedMentions from "../../public/mentionsClicked.svelte";
+  import ClickedReplies from "../../public/replyClicked.svelte";
+  import ClickedDM from "../../public/dmClicked.svelte";
+
+  import UnclickedMentions from "../../public/mentionsUnclicked.svelte";
+  import UnclickedReplies from "../../public/replyUnclicked.svelte";
+  import UnclickedDM from "../../public/dmUnclicked.svelte";
+
+  import Logout from "../../public/Logout.svelte";
 
   import {onMount} from 'svelte';
 
@@ -43,34 +48,76 @@
 <main>
   <nav class="navBarMobile">
     <div class="iconContainer">
-      <div class="mentions">
-        <a class="icon" href="/home">
-          <img src={mentions} class="noHover" alt="mentions" />
-          <img src={hoverMentions} class="hoverImg" alt="hover mentions" />
-        </a>
-      </div>
-
-      <!---
-      <div class="reply">
-        <a class="icon" href="login.html">
-          <img src={reply} class="noHover" alt="reply" />
-          <img src={hoverReply} class="hoverImg" alt="hover reply" />
-        </a>
-      </div>
-      -->
-
-      <div class="dm">
-        <a class="icon" href="/messages">
-          <img src={dm} class="noHover" alt="dm" />
-          <img src={hoverDM} class="hoverImg" alt="hover dm" />
-        </a>
-      </div>
-
+      {#if lastPageAccessed === "/#/home"}
+        <div class="mentions">
+            <a class="icon" href="/#/home">
+                <ClickedMentions/>         
+            </a>
+        </div>  
+        <div class="reply">
+            <a class="icon" href="/#/replies">
+                <UnclickedReplies/>        
+            </a>
+        </div>
+        <div class="dm">
+            <a class="icon" href="/#/messages">
+                <UnclickedDM/>         
+            </a>
+        </div>
+      {:else if lastPageAccessed === "/#/replies"}
+          <div class="mentions">
+              <a class="icon" href="/#/home">
+                  <UnclickedMentions/>         
+              </a>
+          </div>  
+          <div class="reply">
+              <a class="icon" href="/#/replies">
+                  <ClickedReplies/>        
+              </a>
+          </div>
+          <div class="dm">
+              <a class="icon" href="/#/messages">
+                  <UnclickedDM/>         
+              </a>
+          </div>
+      {:else if lastPageAccessed === "/#/messages"}
+          <div class="mentions">
+              <a class="icon" href="/#/home">
+                  <UnclickedMentions/>         
+              </a>
+          </div>  
+          <div class="reply">
+              <a class="icon" href="/#/replies">
+                  <UnclickedReplies/>        
+              </a>
+          </div>
+          <div class="dm">
+              <a class="icon" href="/#/messages">
+                  <ClickedDM/>         
+              </a>
+          </div>
+      {:else}
+          <!--Expected behavior for now-->
+          <div class="mentions">
+              <a class="icon" href="/#/home">
+                  <ClickedMentions/>         
+              </a>
+          </div>  
+          <div class="reply">
+              <a class="icon" href="/#/replies">
+                  <UnclickedReplies/>        
+              </a>
+          </div>
+          <div class="dm">
+              <a class="icon" href="/#/messages">
+                  <UnclickedDM/>         
+              </a>
+          </div>
+      {/if}
       <div class="logout">
         <a class="icon" on:click={sendMstdnLogout} href="#0">
-          <!--Log Out Mastodon-->
-          <img src={logout} class="noHover" alt="logout"/>
-          <img src={hoverLogout} class="hoverImg" alt="hover logout"/>
+            <!--Log Out Mastodon-->
+            <Logout/>
         </a>
       </div>
     </div>
@@ -91,12 +138,6 @@
 
   /*Touch screen*/
   @media screen and (hover: none) {
-    img,
-    .icon {
-      width: 40px;
-      height: 40px;
-    }
-
     .navBarMobile {
       display: flex;
       max-width: 100%;
@@ -116,30 +157,23 @@
     .dm,
     .reply,
     .logout {
-      width: 40px;
+      width: 45px;
       display: flex;
       justify-content: center;
     }
 
-    .mentions:hover .noHover,
-    .dm:hover .noHover,
-    .reply:hover .noHover
-    .logout:hover .noHover {
-      opacity: 0.5;
-      transition: 0.25s ease;
+    .icon {
+        width: 45px;
+        height: 45px;
+        fill: #50C0CB;
     }
-
-    .hoverImg {
-      position: absolute;
-      z-index: 1;
-    }
-
-    .noHover {
-      position: absolute;
-      z-index: 2;
+    
+    .icon:hover {
+        fill: #fff;
+        opacity:0.5;
+        transition: 0.25s ease;
     }
   }
-
   /*Desktop or Laptop*/
   @media screen and (hover: hover) {
     main {

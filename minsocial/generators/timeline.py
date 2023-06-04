@@ -2,6 +2,7 @@ from mastodon import Mastodon
 from minsocial.models.status import Toot
 
 import os
+from zoneinfo import ZoneInfo
 from datetime import datetime, timezone, timedelta
 
 def generate_mentions_timeline(twt_access_key=None, mstdn_access_key=None):
@@ -35,13 +36,7 @@ def generate_mstdn_mentions(mstdn_access_key):
     user = client.account_verify_credentials()
     owntoots = client.account_statuses(id=user["id"], exclude_reblogs=True, exclude_replies=True) 
     for toots in owntoots:
-        tootTime = toots['created_at']
-        now = datetime.now(timezone.utc)
-        timeDiff = now-tootTime
-        maxTimeDiff = timedelta(hours=0, minutes=1, seconds=0, microseconds=0)
-        if maxTimeDiff > timeDiff:
-            tl.append(toots)
-        break
+        tl.append(toots)
     
     response = client.notifications(mentions_only=True)
 
@@ -51,4 +46,7 @@ def generate_mstdn_mentions(mstdn_access_key):
     sortTL = sorted(tl, key=lambda d: d['created_at'], reverse=True)
 
     for post in sortTL:
-        yield Toot(post).asdict()
+        post["id"] = str(post["id"])
+        post["created_at"] = post["created_at"].astimezone(ZoneInfo("Asia/Manila"))
+        post["created_at"] = post["created_at"].strftime("%d %b %y %H:%M")
+        yield post

@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timezone
-
+from zoneinfo import ZoneInfo
 
 class Status(metaclass=ABCMeta):
 
@@ -16,7 +16,7 @@ class Status(metaclass=ABCMeta):
             'source': self.source,
             'id': self.id,
             'author': self.author,
-            'createdTime': self.createdTime.isoformat(),
+            'createdTime': self.createdTime,
             'content': self.content
         }
 
@@ -53,6 +53,7 @@ class Toot(Status):
         assert("content" in toot)
 
         createdTime = toot["created_at"]
-        createdTime = createdTime.replace(tzinfo=timezone.utc)
+        createdTime = createdTime.astimezone(ZoneInfo("Asia/Manila"))
+        createdTime = createdTime.strftime("%d %b %y %H:%M")
 
         super().__init__(str(toot["id"]), toot["account"], createdTime, toot["content"])
