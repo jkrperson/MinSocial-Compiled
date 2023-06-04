@@ -144,7 +144,7 @@
         </div>
 
         <div id="containerArea">
-            <textarea id="text" name="text" rows="3" bind:value={statusText}/>
+            <textarea id="text" name="text" rows="3" maxlength="500" bind:value={statusText}/>
         </div>
 
         <div class="attachments">
