@@ -4354,27 +4354,29 @@ const { Object: Object_1  } = (0, _internal.globals);
 const file = "src/routes/home.svelte";
 function get_each_context(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[4] = list[i];
-    child_ctx[6] = i;
+    child_ctx[5] = list[i];
+    child_ctx[7] = i;
     return child_ctx;
 }
-// (42:8) {:catch error}
+// (46:8) {:catch error}
 function create_catch_block(ctx) {
     let p;
-    let t_value = /*error*/ ctx[7].message + "";
+    let t_value = /*error*/ ctx[8].message + "";
     let t;
     const block = {
         c: function create() {
             p = (0, _internal.element)("p");
             t = (0, _internal.text)(t_value);
             (0, _internal.set_style)(p, "color", "red");
-            (0, _internal.add_location)(p, file, 42, 10, 1381);
+            (0, _internal.add_location)(p, file, 46, 10, 1490);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, p, anchor);
             (0, _internal.append_dev)(p, t);
         },
-        p: (0, _internal.noop),
+        p: function update(ctx, dirty) {
+            if (dirty & /*auth_promise*/ 1 && t_value !== (t_value = /*error*/ ctx[8].message + "")) (0, _internal.set_data_dev)(t, t_value);
+        },
         i: (0, _internal.noop),
         o: (0, _internal.noop),
         d: function destroy(detaching) {
@@ -4385,16 +4387,16 @@ function create_catch_block(ctx) {
         block,
         id: create_catch_block.name,
         type: "catch",
-        source: "(42:8) {:catch error}",
+        source: "(46:8) {:catch error}",
         ctx
     });
     return block;
 }
-// (27:8) {:then response}
+// (31:8) {:then response}
 function create_then_block(ctx) {
     let each_1_anchor;
     let current;
-    let each_value = /*response*/ ctx[3];
+    let each_value = /*response*/ ctx[4];
     (0, _internal.validate_each_argument)(each_value);
     let each_blocks = [];
     for(let i = 0; i < each_value.length; i += 1)each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
@@ -4412,8 +4414,8 @@ function create_then_block(ctx) {
             current = true;
         },
         p: function update(ctx, dirty) {
-            if (dirty & /*auth_promise, Object*/ 4) {
-                each_value = /*response*/ ctx[3];
+            if (dirty & /*auth_promise, Object*/ 1) {
+                each_value = /*response*/ ctx[4];
                 (0, _internal.validate_each_argument)(each_value);
                 let i;
                 for(i = 0; i < each_value.length; i += 1){
@@ -4452,12 +4454,12 @@ function create_then_block(ctx) {
         block,
         id: create_then_block.name,
         type: "then",
-        source: "(27:8) {:then response}",
+        source: "(31:8) {:then response}",
         ctx
     });
     return block;
 }
-// (33:12) {:else}
+// (37:12) {:else}
 function create_else_block(ctx) {
     let div;
     let status;
@@ -4465,7 +4467,7 @@ function create_else_block(ctx) {
     let current;
     status = new (0, _statusSvelteDefault.default)({
         props: {
-            status: /*status*/ ctx[4]
+            status: /*status*/ ctx[5]
         },
         $$inline: true
     });
@@ -4479,7 +4481,7 @@ function create_else_block(ctx) {
             (0, _internal.set_style)(div, "border-color", "#50c0cb");
             (0, _internal.set_style)(div, "border-width", "1px");
             (0, _internal.attr_dev)(div, "class", "svelte-sjve23");
-            (0, _internal.add_location)(div, file, 33, 12, 1113);
+            (0, _internal.add_location)(div, file, 37, 12, 1222);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -4487,7 +4489,11 @@ function create_else_block(ctx) {
             (0, _internal.append_dev)(div, t);
             current = true;
         },
-        p: (0, _internal.noop),
+        p: function update(ctx, dirty) {
+            const status_changes = {};
+            if (dirty & /*auth_promise*/ 1) status_changes.status = /*status*/ ctx[5];
+            status.$set(status_changes);
+        },
         i: function intro(local) {
             if (current) return;
             (0, _internal.transition_in)(status.$$.fragment, local);
@@ -4506,12 +4512,12 @@ function create_else_block(ctx) {
         block,
         id: create_else_block.name,
         type: "else",
-        source: "(33:12) {:else}",
+        source: "(37:12) {:else}",
         ctx
     });
     return block;
 }
-// (29:12) {#if Object.entries(response).length-1 == index}
+// (33:12) {#if Object.entries(response).length-1 == index}
 function create_if_block(ctx) {
     let div;
     let status;
@@ -4519,7 +4525,7 @@ function create_if_block(ctx) {
     let current;
     status = new (0, _statusSvelteDefault.default)({
         props: {
-            status: /*status*/ ctx[4]
+            status: /*status*/ ctx[5]
         },
         $$inline: true
     });
@@ -4530,7 +4536,7 @@ function create_if_block(ctx) {
             t = (0, _internal.space)();
             (0, _internal.attr_dev)(div, "id", "status");
             (0, _internal.attr_dev)(div, "class", "svelte-sjve23");
-            (0, _internal.add_location)(div, file, 29, 14, 1000);
+            (0, _internal.add_location)(div, file, 33, 14, 1109);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -4538,7 +4544,11 @@ function create_if_block(ctx) {
             (0, _internal.append_dev)(div, t);
             current = true;
         },
-        p: (0, _internal.noop),
+        p: function update(ctx, dirty) {
+            const status_changes = {};
+            if (dirty & /*auth_promise*/ 1) status_changes.status = /*status*/ ctx[5];
+            status.$set(status_changes);
+        },
         i: function intro(local) {
             if (current) return;
             (0, _internal.transition_in)(status.$$.fragment, local);
@@ -4557,12 +4567,12 @@ function create_if_block(ctx) {
         block,
         id: create_if_block.name,
         type: "if",
-        source: "(29:12) {#if Object.entries(response).length-1 == index}",
+        source: "(33:12) {#if Object.entries(response).length-1 == index}",
         ctx
     });
     return block;
 }
-// (28:10) {#each response as status, index}
+// (32:10) {#each response as status, index}
 function create_each_block(ctx) {
     let show_if;
     let current_block_type_index;
@@ -4575,7 +4585,9 @@ function create_each_block(ctx) {
     ];
     const if_blocks = [];
     function select_block_type(ctx, dirty) {
-        if (Object.entries(/*response*/ ctx[3]).length - 1 == /*index*/ ctx[6]) return 0;
+        if (dirty & /*auth_promise*/ 1) show_if = null;
+        if (show_if == null) show_if = !!(Object.entries(/*response*/ ctx[4]).length - 1 == /*index*/ ctx[7]);
+        if (show_if) return 0;
         return 1;
     }
     current_block_type_index = select_block_type(ctx, -1);
@@ -4591,7 +4603,23 @@ function create_each_block(ctx) {
             current = true;
         },
         p: function update(ctx, dirty) {
-            if_block.p(ctx, dirty);
+            let previous_block_index = current_block_type_index;
+            current_block_type_index = select_block_type(ctx, dirty);
+            if (current_block_type_index === previous_block_index) if_blocks[current_block_type_index].p(ctx, dirty);
+            else {
+                (0, _internal.group_outros)();
+                (0, _internal.transition_out)(if_blocks[previous_block_index], 1, 1, ()=>{
+                    if_blocks[previous_block_index] = null;
+                });
+                (0, _internal.check_outros)();
+                if_block = if_blocks[current_block_type_index];
+                if (!if_block) {
+                    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+                    if_block.c();
+                } else if_block.p(ctx, dirty);
+                (0, _internal.transition_in)(if_block, 1);
+                if_block.m(if_block_anchor.parentNode, if_block_anchor);
+            }
         },
         i: function intro(local) {
             if (current) return;
@@ -4611,19 +4639,19 @@ function create_each_block(ctx) {
         block,
         id: create_each_block.name,
         type: "each",
-        source: "(28:10) {#each response as status, index}",
+        source: "(32:10) {#each response as status, index}",
         ctx
     });
     return block;
 }
-// (25:29)            <p>waiting...</p>         {:then response}
+// (29:29)            <p>waiting...</p>         {:then response}
 function create_pending_block(ctx) {
     let p;
     const block = {
         c: function create() {
             p = (0, _internal.element)("p");
             p.textContent = "waiting...";
-            (0, _internal.add_location)(p, file, 25, 10, 838);
+            (0, _internal.add_location)(p, file, 29, 10, 947);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, p, anchor);
@@ -4639,7 +4667,7 @@ function create_pending_block(ctx) {
         block,
         id: create_pending_block.name,
         type: "pending",
-        source: "(25:29)            <p>waiting...</p>         {:then response}",
+        source: "(29:29)            <p>waiting...</p>         {:then response}",
         ctx
     });
     return block;
@@ -4662,19 +4690,20 @@ function create_fragment(ctx) {
     let dispose;
     navbardesktop = new (0, _navbarDesktopSvelteDefault.default)({
         props: {
-            lastPageAccessed: /*$lastPageAccessed*/ ctx[0]
+            lastPageAccessed: /*$lastPageAccessed*/ ctx[1]
         },
         $$inline: true
     });
     header = new (0, _headerSvelteDefault.default)({
         props: {
-            title: /*pageTitle*/ ctx[1]
+            title: /*pageTitle*/ ctx[2]
         },
         $$inline: true
     });
     postform = new (0, _postformSvelteDefault.default)({
         $$inline: true
     });
+    postform.$on("postSubmit", /*onFormSubmit*/ ctx[3]);
     let info = {
         ctx,
         current: null,
@@ -4683,18 +4712,18 @@ function create_fragment(ctx) {
         pending: create_pending_block,
         then: create_then_block,
         catch: create_catch_block,
-        value: 3,
-        error: 7,
+        value: 4,
+        error: 8,
         blocks: [
             ,
             ,
             , 
         ]
     };
-    (0, _internal.handle_promise)(promise = /*auth_promise*/ ctx[2], info);
+    (0, _internal.handle_promise)(promise = /*auth_promise*/ ctx[0], info);
     navbarmobile = new (0, _navbarMobileSvelteDefault.default)({
         props: {
-            lastPageAccessed: /*$lastPageAccessed*/ ctx[0]
+            lastPageAccessed: /*$lastPageAccessed*/ ctx[1]
         },
         $$inline: true
     });
@@ -4713,11 +4742,11 @@ function create_fragment(ctx) {
             t3 = (0, _internal.space)();
             (0, _internal.create_component)(navbarmobile.$$.fragment);
             (0, _internal.attr_dev)(main, "class", "svelte-sjve23");
-            (0, _internal.add_location)(main, file, 22, 6, 715);
+            (0, _internal.add_location)(main, file, 26, 6, 795);
             (0, _internal.attr_dev)(div0, "class", "content svelte-sjve23");
-            (0, _internal.add_location)(div0, file, 20, 4, 653);
+            (0, _internal.add_location)(div0, file, 24, 4, 733);
             (0, _internal.attr_dev)(div1, "class", "desktopFormat svelte-sjve23");
-            (0, _internal.add_location)(div1, file, 17, 2, 560);
+            (0, _internal.add_location)(div1, file, 21, 2, 640);
         },
         l: function claim(nodes) {
             throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4748,11 +4777,13 @@ function create_fragment(ctx) {
         p: function update(new_ctx, [dirty]) {
             ctx = new_ctx;
             const navbardesktop_changes = {};
-            if (dirty & /*$lastPageAccessed*/ 1) navbardesktop_changes.lastPageAccessed = /*$lastPageAccessed*/ ctx[0];
+            if (dirty & /*$lastPageAccessed*/ 2) navbardesktop_changes.lastPageAccessed = /*$lastPageAccessed*/ ctx[1];
             navbardesktop.$set(navbardesktop_changes);
-            (0, _internal.update_await_block_branch)(info, ctx, dirty);
+            info.ctx = ctx;
+            if (dirty & /*auth_promise*/ 1 && promise !== (promise = /*auth_promise*/ ctx[0]) && (0, _internal.handle_promise)(promise, info)) ;
+            else (0, _internal.update_await_block_branch)(info, ctx, dirty);
             const navbarmobile_changes = {};
-            if (dirty & /*$lastPageAccessed*/ 1) navbarmobile_changes.lastPageAccessed = /*$lastPageAccessed*/ ctx[0];
+            if (dirty & /*$lastPageAccessed*/ 2) navbarmobile_changes.lastPageAccessed = /*$lastPageAccessed*/ ctx[1];
             navbarmobile.$set(navbarmobile_changes);
         },
         i: function intro(local) {
@@ -4801,11 +4832,14 @@ const load_handler = (n)=>"/#/home";
 function instance($$self, $$props, $$invalidate) {
     let $lastPageAccessed;
     (0, _internal.validate_store)((0, _storeTs.lastPageAccessed), "lastPageAccessed");
-    (0, _internal.component_subscribe)($$self, (0, _storeTs.lastPageAccessed), ($$value)=>$$invalidate(0, $lastPageAccessed = $$value));
+    (0, _internal.component_subscribe)($$self, (0, _storeTs.lastPageAccessed), ($$value)=>$$invalidate(1, $lastPageAccessed = $$value));
     let { $$slots: slots = {} , $$scope  } = $$props;
     (0, _internal.validate_slots)("Home", slots, []);
     let pageTitle = "Mentions";
     let auth_promise = (0, _mentionsTimeline.getHomeContent)();
+    function onFormSubmit(e) {
+        $$invalidate(0, auth_promise = (0, _mentionsTimeline.getHomeContent)());
+    }
     const writable_props = [];
     Object_1.keys($$props).forEach((key)=>{
         if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot") console.warn(`<Home> was created with unknown prop '${key}'`);
@@ -4821,17 +4855,19 @@ function instance($$self, $$props, $$invalidate) {
             lastPageAccessed: (0, _storeTs.lastPageAccessed),
             pageTitle,
             auth_promise,
+            onFormSubmit,
             $lastPageAccessed
         });
     $$self.$inject_state = ($$props)=>{
-        if ("pageTitle" in $$props) $$invalidate(1, pageTitle = $$props.pageTitle);
-        if ("auth_promise" in $$props) $$invalidate(2, auth_promise = $$props.auth_promise);
+        if ("pageTitle" in $$props) $$invalidate(2, pageTitle = $$props.pageTitle);
+        if ("auth_promise" in $$props) $$invalidate(0, auth_promise = $$props.auth_promise);
     };
     if ($$props && "$$inject" in $$props) $$self.$inject_state($$props.$$inject);
     return [
+        auth_promise,
         $lastPageAccessed,
         pageTitle,
-        auth_promise
+        onFormSubmit
     ];
 }
 class Home extends (0, _internal.SvelteComponentDev) {
@@ -4866,7 +4902,7 @@ var _replyHeaderSvelteDefault = parcelHelpers.interopDefault(_replyHeaderSvelte)
 var _backSvelte = require("../../public/back.svelte");
 var _backSvelteDefault = parcelHelpers.interopDefault(_backSvelte);
 var _svelteSpaRouter = require("svelte-spa-router");
-var _storeTs = require("../routes/store.ts");
+var _svelte = require("svelte");
 const file = "src/components/Header.svelte";
 // (38:12) {:else}
 function create_else_block(ctx) {
@@ -4883,7 +4919,7 @@ function create_else_block(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(backbutton.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "backButtonIcon svelte-1yimwcl");
-            (0, _internal.add_location)(div, file, 38, 16, 1239);
+            (0, _internal.add_location)(div, file, 38, 16, 1215);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -4936,7 +4972,7 @@ function create_if_block_3(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(messagesheader.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "headerIcon svelte-1yimwcl");
-            (0, _internal.add_location)(div, file, 34, 16, 1117);
+            (0, _internal.add_location)(div, file, 34, 16, 1093);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -4980,7 +5016,7 @@ function create_if_block_2(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(repliesheader.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "headerIcon svelte-1yimwcl");
-            (0, _internal.add_location)(div, file, 30, 16, 973);
+            (0, _internal.add_location)(div, file, 30, 16, 949);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5024,7 +5060,7 @@ function create_if_block_1(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(mentionsheader.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "headerIcon svelte-1yimwcl");
-            (0, _internal.add_location)(div, file, 26, 16, 829);
+            (0, _internal.add_location)(div, file, 26, 16, 805);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5150,13 +5186,13 @@ function create_fragment(ctx) {
             t2 = (0, _internal.space)();
             if (if_block1) if_block1.c();
             (0, _internal.attr_dev)(h1, "class", "Menu svelte-1yimwcl");
-            (0, _internal.add_location)(h1, file, 43, 12, 1420);
+            (0, _internal.add_location)(h1, file, 43, 12, 1411);
             (0, _internal.attr_dev)(div0, "class", "headerContent");
-            (0, _internal.add_location)(div0, file, 24, 8, 747);
+            (0, _internal.add_location)(div0, file, 24, 8, 723);
             (0, _internal.attr_dev)(div1, "class", "headerContainer svelte-1yimwcl");
-            (0, _internal.add_location)(div1, file, 23, 4, 709);
+            (0, _internal.add_location)(div1, file, 23, 4, 685);
             (0, _internal.attr_dev)(main, "class", "svelte-1yimwcl");
-            (0, _internal.add_location)(main, file, 22, 0, 698);
+            (0, _internal.add_location)(main, file, 22, 0, 674);
         },
         l: function claim(nodes) {
             throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5252,8 +5288,8 @@ function instance($$self, $$props, $$invalidate) {
     Object.keys($$props).forEach((key)=>{
         if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$" && key !== "slot") console.warn(`<Header> was created with unknown prop '${key}'`);
     });
-    const click_handler = ()=>{
-        (0, _svelteSpaRouter.pop)();
+    const click_handler = async ()=>{
+        history.back();
     };
     function toggle_value_binding(value$1) {
         value = value$1;
@@ -5274,7 +5310,7 @@ function instance($$self, $$props, $$invalidate) {
             push: (0, _svelteSpaRouter.push),
             pop: (0, _svelteSpaRouter.pop),
             replace: (0, _svelteSpaRouter.replace),
-            lastPageAccessed: (0, _storeTs.lastPageAccessed)
+            tick: (0, _svelte.tick)
         });
     $$self.$inject_state = ($$props)=>{
         if ("title" in $$props) $$invalidate(1, title = $$props.title);
@@ -5317,7 +5353,7 @@ class Header extends (0, _internal.SvelteComponentDev) {
 }
 exports.default = Header;
 
-},{"svelte/internal":"iVhnC","./Toggle.svelte":"gJzf3","@fontsource/open-sans":"bvmaD","../../public/mentionsHeader.svelte":"gFW7d","../../public/dmHeader.svelte":"dpc3h","../../public/replyHeader.svelte":"dbBsd","../../public/back.svelte":"cyMIn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","svelte-spa-router":"eZ6BK","../routes/store.ts":"15S4M"}],"gJzf3":[function(require,module,exports) {
+},{"svelte/internal":"iVhnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Toggle.svelte":"gJzf3","@fontsource/open-sans":"bvmaD","../../public/mentionsHeader.svelte":"gFW7d","../../public/dmHeader.svelte":"dpc3h","../../public/replyHeader.svelte":"dbBsd","../../public/back.svelte":"cyMIn","svelte-spa-router":"eZ6BK","svelte":"4r74h"}],"gJzf3":[function(require,module,exports) {
 /* src/components/Toggle.svelte generated by Svelte v3.55.1 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _internal = require("svelte/internal");
@@ -5751,19 +5787,12 @@ class Back extends (0, _internal.SvelteComponentDev) {
 }
 exports.default = Back;
 
-},{"svelte/internal":"iVhnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"15S4M":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "lastPageAccessed", ()=>lastPageAccessed);
-var _store = require("svelte/store");
-const lastPageAccessed = (0, _store.writable)("/#/home");
-exports.default = lastPageAccessed;
-
-},{"svelte/store":"6DBki","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d50Ue":[function(require,module,exports) {
+},{"svelte/internal":"iVhnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d50Ue":[function(require,module,exports) {
 /* src/components/Postform.svelte generated by Svelte v3.55.1 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _internal = require("svelte/internal");
 var _svelteSpaRouter = require("svelte-spa-router");
+var _svelte = require("svelte");
 var _pollSvelte = require("./Poll.svelte");
 var _pollSvelteDefault = parcelHelpers.interopDefault(_pollSvelte);
 var _mediaInputSvelte = require("./MediaInput.svelte");
@@ -5776,7 +5805,7 @@ var _pollSvelteDefault1 = parcelHelpers.interopDefault(_pollSvelte1);
 var _attachmentSvelte = require("../../public/attachment.svelte");
 var _attachmentSvelteDefault = parcelHelpers.interopDefault(_attachmentSvelte);
 const file = "src/components/Postform.svelte";
-// (157:12) {:else}
+// (163:12) {:else}
 function create_else_block_2(ctx) {
     let div;
     let attachment;
@@ -5789,7 +5818,7 @@ function create_else_block_2(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(attachment.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "enabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 157, 16, 4217);
+            (0, _internal.add_location)(div, file, 163, 16, 4352);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5814,12 +5843,12 @@ function create_else_block_2(ctx) {
         block,
         id: create_else_block_2.name,
         type: "else",
-        source: "(157:12) {:else}",
+        source: "(163:12) {:else}",
         ctx
     });
     return block;
 }
-// (153:12) {#if !mediaToggle}
+// (159:12) {#if !mediaToggle}
 function create_if_block_5(ctx) {
     let div;
     let attachment;
@@ -5832,7 +5861,7 @@ function create_if_block_5(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(attachment.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "disabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 153, 16, 4101);
+            (0, _internal.add_location)(div, file, 159, 16, 4236);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5857,12 +5886,12 @@ function create_if_block_5(ctx) {
         block,
         id: create_if_block_5.name,
         type: "if",
-        source: "(153:12) {#if !mediaToggle}",
+        source: "(159:12) {#if !mediaToggle}",
         ctx
     });
     return block;
 }
-// (169:12) {:else}
+// (175:12) {:else}
 function create_else_block_1(ctx) {
     let div;
     let pollicon;
@@ -5875,7 +5904,7 @@ function create_else_block_1(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(pollicon.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "enabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 169, 16, 4572);
+            (0, _internal.add_location)(div, file, 175, 16, 4707);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5900,12 +5929,12 @@ function create_else_block_1(ctx) {
         block,
         id: create_else_block_1.name,
         type: "else",
-        source: "(169:12) {:else}",
+        source: "(175:12) {:else}",
         ctx
     });
     return block;
 }
-// (165:12) {#if !pollToggle}
+// (171:12) {#if !pollToggle}
 function create_if_block_4(ctx) {
     let div;
     let pollicon;
@@ -5918,7 +5947,7 @@ function create_if_block_4(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(pollicon.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "disabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 165, 16, 4458);
+            (0, _internal.add_location)(div, file, 171, 16, 4593);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5943,12 +5972,12 @@ function create_if_block_4(ctx) {
         block,
         id: create_if_block_4.name,
         type: "if",
-        source: "(165:12) {#if !pollToggle}",
+        source: "(171:12) {#if !pollToggle}",
         ctx
     });
     return block;
 }
-// (181:16) {:else}
+// (187:16) {:else}
 function create_else_block(ctx) {
     let div;
     let contentwarning;
@@ -5961,7 +5990,7 @@ function create_else_block(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(contentwarning.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "enabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 181, 20, 4972);
+            (0, _internal.add_location)(div, file, 187, 20, 5107);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -5986,12 +6015,12 @@ function create_else_block(ctx) {
         block,
         id: create_else_block.name,
         type: "else",
-        source: "(181:16) {:else}",
+        source: "(187:16) {:else}",
         ctx
     });
     return block;
 }
-// (177:16) {#if !contentWarningToggle}
+// (183:16) {#if !contentWarningToggle}
 function create_if_block_3(ctx) {
     let div;
     let contentwarning;
@@ -6004,7 +6033,7 @@ function create_if_block_3(ctx) {
             div = (0, _internal.element)("div");
             (0, _internal.create_component)(contentwarning.$$.fragment);
             (0, _internal.attr_dev)(div, "class", "disabled svelte-3z255s");
-            (0, _internal.add_location)(div, file, 177, 20, 4836);
+            (0, _internal.add_location)(div, file, 183, 20, 4971);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -6029,12 +6058,12 @@ function create_if_block_3(ctx) {
         block,
         id: create_if_block_3.name,
         type: "if",
-        source: "(177:16) {#if !contentWarningToggle}",
+        source: "(183:16) {#if !contentWarningToggle}",
         ctx
     });
     return block;
 }
-// (188:16) {#if contentWarningToggle}
+// (194:16) {#if contentWarningToggle}
 function create_if_block_2(ctx) {
     let input;
     let mounted;
@@ -6046,7 +6075,7 @@ function create_if_block_2(ctx) {
             (0, _internal.attr_dev)(input, "id", "cwText");
             (0, _internal.attr_dev)(input, "placeholder", "Content Warning...");
             (0, _internal.attr_dev)(input, "class", "svelte-3z255s");
-            (0, _internal.add_location)(input, file, 188, 20, 5205);
+            (0, _internal.add_location)(input, file, 194, 20, 5340);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, input, anchor);
@@ -6069,12 +6098,12 @@ function create_if_block_2(ctx) {
         block,
         id: create_if_block_2.name,
         type: "if",
-        source: "(188:16) {#if contentWarningToggle}",
+        source: "(194:16) {#if contentWarningToggle}",
         ctx
     });
     return block;
 }
-// (196:12) {#if pollToggle}
+// (202:12) {#if pollToggle}
 function create_if_block_1(ctx) {
     let poll;
     let updating_choices;
@@ -6149,12 +6178,12 @@ function create_if_block_1(ctx) {
         block,
         id: create_if_block_1.name,
         type: "if",
-        source: "(196:12) {#if pollToggle}",
+        source: "(202:12) {#if pollToggle}",
         ctx
     });
     return block;
 }
-// (199:12) {#if mediaToggle}
+// (205:12) {#if mediaToggle}
 function create_if_block(ctx) {
     let mediainput;
     let updating_imageValue;
@@ -6225,7 +6254,7 @@ function create_if_block(ctx) {
         block,
         id: create_if_block.name,
         type: "if",
-        source: "(199:12) {#if mediaToggle}",
+        source: "(205:12) {#if mediaToggle}",
         ctx
     });
     return block;
@@ -6330,52 +6359,52 @@ function create_fragment(ctx) {
             div5 = (0, _internal.element)("div");
             input = (0, _internal.element)("input");
             (0, _internal.attr_dev)(span, "class", "svelte-3z255s");
-            (0, _internal.add_location)(span, file, 140, 12, 3723);
+            (0, _internal.add_location)(span, file, 146, 12, 3858);
             (0, _internal.attr_dev)(div0, "id", "containerTitle");
             (0, _internal.attr_dev)(div0, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div0, file, 139, 8, 3685);
+            (0, _internal.add_location)(div0, file, 145, 8, 3820);
             (0, _internal.attr_dev)(textarea, "id", "text");
             (0, _internal.attr_dev)(textarea, "name", "text");
             (0, _internal.attr_dev)(textarea, "rows", "3");
             (0, _internal.attr_dev)(textarea, "class", "svelte-3z255s");
-            (0, _internal.add_location)(textarea, file, 146, 12, 3847);
+            (0, _internal.add_location)(textarea, file, 152, 12, 3982);
             (0, _internal.attr_dev)(div1, "id", "containerArea");
             (0, _internal.attr_dev)(div1, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div1, file, 145, 8, 3810);
+            (0, _internal.add_location)(div1, file, 151, 8, 3945);
             (0, _internal.attr_dev)(button0, "type", "button");
             (0, _internal.attr_dev)(button0, "id", "displayMedia");
             (0, _internal.attr_dev)(button0, "class", "svelte-3z255s");
-            (0, _internal.add_location)(button0, file, 151, 12, 3989);
+            (0, _internal.add_location)(button0, file, 157, 12, 4124);
             (0, _internal.attr_dev)(button1, "type", "button");
             (0, _internal.attr_dev)(button1, "id", "displayPoll");
             (0, _internal.attr_dev)(button1, "class", "svelte-3z255s");
-            (0, _internal.add_location)(button1, file, 163, 12, 4349);
+            (0, _internal.add_location)(button1, file, 169, 12, 4484);
             (0, _internal.attr_dev)(button2, "type", "button");
             (0, _internal.attr_dev)(button2, "id", "cwToggle");
             (0, _internal.attr_dev)(button2, "class", "svelte-3z255s");
-            (0, _internal.add_location)(button2, file, 175, 12, 4714);
+            (0, _internal.add_location)(button2, file, 181, 12, 4849);
             (0, _internal.attr_dev)(div2, "id", "containerCW");
             (0, _internal.attr_dev)(div2, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div2, file, 186, 12, 5119);
+            (0, _internal.add_location)(div2, file, 192, 12, 5254);
             (0, _internal.attr_dev)(div3, "class", "attachments svelte-3z255s");
-            (0, _internal.add_location)(div3, file, 149, 8, 3938);
+            (0, _internal.add_location)(div3, file, 155, 8, 4073);
             (0, _internal.attr_dev)(div4, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div4, file, 194, 8, 5391);
+            (0, _internal.add_location)(div4, file, 200, 8, 5526);
             (0, _internal.attr_dev)(input, "id", "submitButton");
             (0, _internal.attr_dev)(input, "type", "submit");
             input.value = "Post";
             (0, _internal.attr_dev)(input, "class", "svelte-3z255s");
-            (0, _internal.add_location)(input, file, 204, 12, 5842);
+            (0, _internal.add_location)(input, file, 210, 12, 5977);
             (0, _internal.attr_dev)(div5, "id", "containerFooter");
             (0, _internal.attr_dev)(div5, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div5, file, 203, 8, 5803);
+            (0, _internal.add_location)(div5, file, 209, 8, 5938);
             (0, _internal.attr_dev)(form, "action", "/api/compose/");
             (0, _internal.attr_dev)(form, "enctype", "multipart/form-data");
             (0, _internal.attr_dev)(form, "class", "svelte-3z255s");
-            (0, _internal.add_location)(form, file, 138, 4, 3575);
+            (0, _internal.add_location)(form, file, 144, 4, 3710);
             (0, _internal.attr_dev)(div6, "id", "postContainer");
             (0, _internal.attr_dev)(div6, "class", "svelte-3z255s");
-            (0, _internal.add_location)(div6, file, 137, 0, 3546);
+            (0, _internal.add_location)(div6, file, 143, 0, 3681);
         },
         l: function claim(nodes) {
             throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6606,7 +6635,8 @@ function instance($$self, $$props, $$invalidate) {
     let pollToggle = false;
     let contentWarningToggle = false;
     let contentWarningText = "";
-    const handleOnSubmit = (e)=>{
+    const dispatch = (0, _svelte.createEventDispatcher)();
+    async function handleOnSubmit(e) {
         const ACTION_URL = e.target.action;
         const formData = new FormData();
         if (!mediaToggle && statusText === "") {
@@ -6651,11 +6681,12 @@ function instance($$self, $$props, $$invalidate) {
         ]);
         $$invalidate(7, pollOption = true);
         $$invalidate(8, pollDeadline = deadlineChoices[0]);
-        fetch(ACTION_URL, {
+        await fetch(ACTION_URL, {
             method: "POST",
             body: formData
         });
-    };
+        dispatch("postSubmit");
+    }
     function toggleMedia() {
         if (!mediaToggle) {
             $$invalidate(9, pollToggle = false);
@@ -6709,6 +6740,7 @@ function instance($$self, $$props, $$invalidate) {
     }
     $$self.$capture_state = ()=>({
             replace: (0, _svelteSpaRouter.replace),
+            createEventDispatcher: (0, _svelte.createEventDispatcher),
             Poll: (0, _pollSvelteDefault.default),
             MediaInput: (0, _mediaInputSvelteDefault.default),
             ContentWarning: (0, _contentWarningSvelteDefault.default),
@@ -6728,6 +6760,7 @@ function instance($$self, $$props, $$invalidate) {
             pollToggle,
             contentWarningToggle,
             contentWarningText,
+            dispatch,
             handleOnSubmit,
             toggleMedia,
             togglePoll,
@@ -6792,7 +6825,7 @@ class Postform extends (0, _internal.SvelteComponentDev) {
 }
 exports.default = Postform;
 
-},{"svelte/internal":"iVhnC","svelte-spa-router":"eZ6BK","./Poll.svelte":"l61Rv","./MediaInput.svelte":"6Ew5j","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../public/contentWarning.svelte":"enr12","../../public/poll.svelte":"2nvx4","../../public/attachment.svelte":"i7ZBf"}],"l61Rv":[function(require,module,exports) {
+},{"svelte/internal":"iVhnC","svelte-spa-router":"eZ6BK","./Poll.svelte":"l61Rv","./MediaInput.svelte":"6Ew5j","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../public/contentWarning.svelte":"enr12","../../public/poll.svelte":"2nvx4","../../public/attachment.svelte":"i7ZBf","svelte":"4r74h"}],"l61Rv":[function(require,module,exports) {
 /* src/components/Poll.svelte generated by Svelte v3.55.1 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _internal = require("svelte/internal");
@@ -10121,10 +10154,10 @@ function create_if_block_14(ctx) {
             (0, _internal.attr_dev)(button, "id", "contentToggle");
             (0, _internal.attr_dev)(button, "onclick", "event.stopPropagation(); event.preventDefault; return false");
             (0, _internal.attr_dev)(button, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(button, file, 27, 51, 859);
+            (0, _internal.add_location)(button, file, 27, 51, 872);
             (0, _internal.attr_dev)(p, "id", "spoilerText");
             (0, _internal.attr_dev)(p, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(p, file, 27, 6, 814);
+            (0, _internal.add_location)(p, file, 27, 6, 827);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, p, anchor);
@@ -10255,9 +10288,9 @@ function create_if_block(ctx) {
             if_block_anchor = (0, _internal.empty)();
             (0, _internal.attr_dev)(p, "id", "htmlContent");
             (0, _internal.attr_dev)(p, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(p, file, 34, 8, 1236);
+            (0, _internal.add_location)(p, file, 34, 8, 1249);
             (0, _internal.attr_dev)(a, "href", a_href_value = "/toot/" + /*status*/ ctx[0]["id"]);
-            (0, _internal.add_location)(a, file, 33, 6, 1187);
+            (0, _internal.add_location)(a, file, 33, 6, 1200);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, a, anchor);
@@ -10387,7 +10420,7 @@ function create_if_block_9(ctx) {
             if_block.c();
             (0, _internal.attr_dev)(div, "id", "centering");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 136, 8, 5695);
+            (0, _internal.add_location)(div, file, 136, 8, 5708);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -10437,10 +10470,10 @@ function create_if_block_7(ctx) {
             for(let i = 0; i < each_blocks.length; i += 1)each_blocks[i].c();
             (0, _internal.attr_dev)(div0, "id", "mediaGallery");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 111, 10, 4516);
+            (0, _internal.add_location)(div0, file, 111, 10, 4529);
             (0, _internal.attr_dev)(div1, "id", "centering");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 110, 8, 4485);
+            (0, _internal.add_location)(div1, file, 110, 8, 4498);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10507,10 +10540,10 @@ function create_if_block_3(ctx) {
             for(let i = 0; i < each_blocks.length; i += 1)each_blocks[i].c();
             (0, _internal.attr_dev)(div0, "id", "mediaGallery");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 64, 10, 2456);
+            (0, _internal.add_location)(div0, file, 64, 10, 2469);
             (0, _internal.attr_dev)(div1, "id", "centering");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 63, 8, 2425);
+            (0, _internal.add_location)(div1, file, 63, 8, 2438);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10577,10 +10610,10 @@ function create_if_block_1(ctx) {
             for(let i = 0; i < each_blocks.length; i += 1)each_blocks[i].c();
             (0, _internal.attr_dev)(div0, "id", "mediaGallery");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 39, 10, 1389);
+            (0, _internal.add_location)(div0, file, 39, 10, 1402);
             (0, _internal.attr_dev)(div1, "id", "centering");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 38, 8, 1358);
+            (0, _internal.add_location)(div1, file, 38, 8, 1371);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10648,23 +10681,23 @@ function create_else_block_4(ctx) {
             track = (0, _internal.element)("track");
             source = (0, _internal.element)("source");
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 165, 16, 6983);
+            (0, _internal.add_location)(track, file, 165, 16, 6996);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 167, 16, 7076);
+            (0, _internal.add_location)(source, file, 167, 16, 7089);
             video.autoplay = true;
             video.playsInline = true;
             video.loop = true;
             video.muted = true;
             (0, _internal.attr_dev)(video, "id", "mediaGIF");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 164, 14, 6913);
+            (0, _internal.add_location)(video, file, 164, 14, 6926);
             (0, _internal.attr_dev)(div0, "id", "gifContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 163, 14, 6875);
+            (0, _internal.add_location)(div0, file, 163, 14, 6888);
             (0, _internal.attr_dev)(div1, "id", "singleMediaContainer");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 162, 12, 6783);
+            (0, _internal.add_location)(div1, file, 162, 12, 6796);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10716,20 +10749,20 @@ function create_if_block_12(ctx) {
             track = (0, _internal.element)("track");
             source = (0, _internal.element)("source");
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 154, 18, 6542);
+            (0, _internal.add_location)(track, file, 154, 18, 6555);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 156, 18, 6640);
+            (0, _internal.add_location)(source, file, 156, 18, 6653);
             video.controls = true;
             (0, _internal.attr_dev)(video, "id", "mediaVideo");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 153, 16, 6491);
+            (0, _internal.add_location)(video, file, 153, 16, 6504);
             (0, _internal.attr_dev)(div0, "id", "videoContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 152, 14, 6449);
+            (0, _internal.add_location)(div0, file, 152, 14, 6462);
             (0, _internal.attr_dev)(div1, "id", "singleMediaContainer");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 151, 12, 6357);
+            (0, _internal.add_location)(div1, file, 151, 12, 6370);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10776,11 +10809,11 @@ function create_if_block_11(ctx) {
             source = (0, _internal.element)("source");
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "audio/mp3");
-            (0, _internal.add_location)(source, file, 147, 18, 6228);
+            (0, _internal.add_location)(source, file, 147, 18, 6241);
             audio.controls = true;
             (0, _internal.attr_dev)(audio, "id", "mediaAudio");
             (0, _internal.attr_dev)(audio, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(audio, file, 146, 16, 6131);
+            (0, _internal.add_location)(audio, file, 146, 16, 6144);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, audio, anchor);
@@ -10829,16 +10862,16 @@ function create_if_block_10(ctx) {
             (0, _internal.attr_dev)(img, "id", "mediaImage");
             (0, _internal.attr_dev)(img, "alt", "mediaImage");
             (0, _internal.attr_dev)(img, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(img, file, 140, 16, 5960);
+            (0, _internal.add_location)(img, file, 140, 16, 5973);
             (0, _internal.attr_dev)(a, "href", a_href_value = /*media*/ ctx[11]["url"]);
             (0, _internal.attr_dev)(a, "id", "imageLink");
             (0, _internal.attr_dev)(a, "target", "_blank");
             (0, _internal.attr_dev)(a, "rel", "noreferrer noopener");
             (0, _internal.attr_dev)(a, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(a, file, 139, 14, 5861);
+            (0, _internal.add_location)(a, file, 139, 14, 5874);
             (0, _internal.attr_dev)(div, "id", "singleMediaContainer");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 138, 12, 5769);
+            (0, _internal.add_location)(div, file, 138, 12, 5782);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -10889,24 +10922,24 @@ function create_else_block_3(ctx) {
             source = (0, _internal.element)("source");
             t = (0, _internal.space)();
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 123, 22, 5262);
+            (0, _internal.add_location)(track, file, 123, 22, 5275);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 125, 22, 5367);
+            (0, _internal.add_location)(source, file, 125, 22, 5380);
             video.autoplay = true;
             video.playsInline = true;
             video.loop = true;
             video.muted = true;
             (0, _internal.attr_dev)(video, "id", "mediaGIF");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 122, 20, 5186);
+            (0, _internal.add_location)(video, file, 122, 20, 5199);
             (0, _internal.attr_dev)(div0, "id", "gifContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 121, 18, 5142);
+            (0, _internal.add_location)(div0, file, 121, 18, 5155);
             (0, _internal.attr_dev)(div1, "id", "multipleMediaContainer");
             (0, _internal.set_style)(div1, "grid-row", "span 2");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 120, 16, 5065);
+            (0, _internal.add_location)(div1, file, 120, 16, 5078);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -10950,18 +10983,18 @@ function create_if_block_8(ctx) {
             (0, _internal.attr_dev)(img, "id", "mediaImage");
             (0, _internal.attr_dev)(img, "alt", "mediaImage");
             (0, _internal.attr_dev)(img, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(img, file, 116, 20, 4920);
+            (0, _internal.add_location)(img, file, 116, 20, 4933);
             (0, _internal.attr_dev)(a, "href", a_href_value = /*media*/ ctx[11]["url"]);
             (0, _internal.attr_dev)(a, "id", "imageLink");
             (0, _internal.attr_dev)(a, "target", "_blank");
             (0, _internal.attr_dev)(a, "rel", "noreferrer noopener");
             (0, _internal.attr_dev)(a, "onclick", "event.stopPropagation();");
             (0, _internal.attr_dev)(a, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(a, file, 115, 18, 4782);
+            (0, _internal.add_location)(a, file, 115, 18, 4795);
             (0, _internal.attr_dev)(div, "id", "multipleMediaContainer");
             (0, _internal.set_style)(div, "grid-row", "span 2");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 114, 16, 4705);
+            (0, _internal.add_location)(div, file, 114, 16, 4718);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -11047,23 +11080,23 @@ function create_else_block_2(ctx) {
             source = (0, _internal.element)("source");
             t = (0, _internal.space)();
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 96, 22, 4089);
+            (0, _internal.add_location)(track, file, 96, 22, 4102);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 98, 22, 4194);
+            (0, _internal.add_location)(source, file, 98, 22, 4207);
             video.autoplay = true;
             video.playsInline = true;
             video.loop = true;
             video.muted = true;
             (0, _internal.attr_dev)(video, "id", "mediaGIF");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 95, 20, 4013);
+            (0, _internal.add_location)(video, file, 95, 20, 4026);
             (0, _internal.attr_dev)(div0, "id", "gifContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 94, 18, 3969);
+            (0, _internal.add_location)(div0, file, 94, 18, 3982);
             (0, _internal.attr_dev)(div1, "id", "multipleMediaContainer");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 93, 16, 3917);
+            (0, _internal.add_location)(div1, file, 93, 16, 3930);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -11107,17 +11140,17 @@ function create_if_block_6(ctx) {
             (0, _internal.attr_dev)(img, "id", "mediaImage");
             (0, _internal.attr_dev)(img, "alt", "mediaImage");
             (0, _internal.attr_dev)(img, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(img, file, 89, 20, 3772);
+            (0, _internal.add_location)(img, file, 89, 20, 3785);
             (0, _internal.attr_dev)(a, "href", a_href_value = /*media*/ ctx[11]["url"]);
             (0, _internal.attr_dev)(a, "id", "imageLink");
             (0, _internal.attr_dev)(a, "target", "_blank");
             (0, _internal.attr_dev)(a, "rel", "noreferrer noopener");
             (0, _internal.attr_dev)(a, "onclick", "event.stopPropagation();");
             (0, _internal.attr_dev)(a, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(a, file, 88, 18, 3634);
+            (0, _internal.add_location)(a, file, 88, 18, 3647);
             (0, _internal.attr_dev)(div, "id", "multipleMediaContainer");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 87, 16, 3582);
+            (0, _internal.add_location)(div, file, 87, 16, 3595);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -11203,24 +11236,24 @@ function create_else_block_1(ctx) {
             source = (0, _internal.element)("source");
             t = (0, _internal.space)();
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 77, 22, 3241);
+            (0, _internal.add_location)(track, file, 77, 22, 3254);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 79, 22, 3346);
+            (0, _internal.add_location)(source, file, 79, 22, 3359);
             video.autoplay = true;
             video.playsInline = true;
             video.loop = true;
             video.muted = true;
             (0, _internal.attr_dev)(video, "id", "mediaGIF");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 76, 20, 3165);
+            (0, _internal.add_location)(video, file, 76, 20, 3178);
             (0, _internal.attr_dev)(div0, "id", "gifContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 75, 18, 3121);
+            (0, _internal.add_location)(div0, file, 75, 18, 3134);
             (0, _internal.attr_dev)(div1, "id", "multipleMediaContainer");
             (0, _internal.set_style)(div1, "grid-row", "span 2");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 74, 16, 3044);
+            (0, _internal.add_location)(div1, file, 74, 16, 3057);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -11264,18 +11297,18 @@ function create_if_block_5(ctx) {
             (0, _internal.attr_dev)(img, "id", "mediaImage");
             (0, _internal.attr_dev)(img, "alt", "mediaImage");
             (0, _internal.attr_dev)(img, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(img, file, 70, 20, 2899);
+            (0, _internal.add_location)(img, file, 70, 20, 2912);
             (0, _internal.attr_dev)(a, "href", a_href_value = /*media*/ ctx[11]["url"]);
             (0, _internal.attr_dev)(a, "id", "imageLink");
             (0, _internal.attr_dev)(a, "target", "_blank");
             (0, _internal.attr_dev)(a, "rel", "noreferrer noopener");
             (0, _internal.attr_dev)(a, "onclick", "event.stopPropagation();");
             (0, _internal.attr_dev)(a, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(a, file, 69, 18, 2761);
+            (0, _internal.add_location)(a, file, 69, 18, 2774);
             (0, _internal.attr_dev)(div, "id", "multipleMediaContainer");
             (0, _internal.set_style)(div, "grid-row", "span 2");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 68, 16, 2684);
+            (0, _internal.add_location)(div, file, 68, 16, 2697);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -11362,23 +11395,23 @@ function create_else_block(ctx) {
             source = (0, _internal.element)("source");
             t = (0, _internal.space)();
             (0, _internal.attr_dev)(track, "kind", "captions");
-            (0, _internal.add_location)(track, file, 51, 22, 2050);
+            (0, _internal.add_location)(track, file, 51, 22, 2063);
             if (!(0, _internal.src_url_equal)(source.src, source_src_value = /*media*/ ctx[11]["url"])) (0, _internal.attr_dev)(source, "src", source_src_value);
             (0, _internal.attr_dev)(source, "type", "video/mp4");
-            (0, _internal.add_location)(source, file, 53, 22, 2155);
+            (0, _internal.add_location)(source, file, 53, 22, 2168);
             video.autoplay = true;
             video.playsInline = true;
             video.loop = true;
             video.muted = true;
             (0, _internal.attr_dev)(video, "id", "mediaGIF");
             (0, _internal.attr_dev)(video, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(video, file, 50, 20, 1974);
+            (0, _internal.add_location)(video, file, 50, 20, 1987);
             (0, _internal.attr_dev)(div0, "id", "gifContainer");
             (0, _internal.attr_dev)(div0, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 49, 18, 1930);
+            (0, _internal.add_location)(div0, file, 49, 18, 1943);
             (0, _internal.attr_dev)(div1, "id", "multipleMediaContainer");
             (0, _internal.attr_dev)(div1, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div1, file, 48, 16, 1878);
+            (0, _internal.add_location)(div1, file, 48, 16, 1891);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div1, anchor);
@@ -11422,16 +11455,16 @@ function create_if_block_2(ctx) {
             (0, _internal.attr_dev)(img, "id", "mediaImage");
             (0, _internal.attr_dev)(img, "alt", "mediaImage");
             (0, _internal.attr_dev)(img, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(img, file, 44, 20, 1733);
+            (0, _internal.add_location)(img, file, 44, 20, 1746);
             (0, _internal.attr_dev)(a, "href", a_href_value = /*media*/ ctx[11]["url"]);
             (0, _internal.attr_dev)(a, "id", "imageLink");
             (0, _internal.attr_dev)(a, "target", "_blank");
             (0, _internal.attr_dev)(a, "rel", "noreferrer noopener");
             (0, _internal.attr_dev)(a, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(a, file, 43, 18, 1630);
+            (0, _internal.add_location)(a, file, 43, 18, 1643);
             (0, _internal.attr_dev)(div, "id", "multipleMediaContainer");
             (0, _internal.attr_dev)(div, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(div, file, 42, 16, 1578);
+            (0, _internal.add_location)(div, file, 42, 16, 1591);
         },
         m: function mount(target, anchor) {
             (0, _internal.insert_dev)(target, div, anchor);
@@ -11532,12 +11565,12 @@ function create_fragment(ctx) {
             t5 = (0, _internal.space)();
             if (if_block1) if_block1.c();
             (0, _internal.attr_dev)(span, "id", "dateTime");
-            (0, _internal.add_location)(span, file, 23, 55, 706);
+            (0, _internal.add_location)(span, file, 23, 55, 719);
             (0, _internal.attr_dev)(p, "id", "username");
             (0, _internal.attr_dev)(p, "class", "svelte-6pwebt");
-            (0, _internal.add_location)(p, file, 23, 6, 657);
+            (0, _internal.add_location)(p, file, 23, 6, 670);
             (0, _internal.attr_dev)(div0, "class", "statusDetails svelte-6pwebt");
-            (0, _internal.add_location)(div0, file, 22, 4, 623);
+            (0, _internal.add_location)(div0, file, 22, 4, 636);
             (0, _internal.attr_dev)(div1, "class", "post svelte-6pwebt");
             (0, _internal.add_location)(div1, file, 21, 2, 503);
         },
@@ -11675,8 +11708,8 @@ function instance($$self, $$props, $$invalidate) {
     const click_handler_7 = ()=>{
         $$invalidate(1, showContent = !showContent);
     };
-    const click_handler_8 = ()=>{
-        (0, _svelteSpaRouter.push)("/toot/" + status["id"]);
+    const click_handler_8 = async ()=>{
+        await (0, _svelteSpaRouter.push)("/toot/" + status["id"]);
         window.location.reload(true);
     };
     $$self.$$set = ($$props)=>{
@@ -12882,7 +12915,15 @@ async function getHomeContent() {
     else (0, _svelteSpaRouter.replace)("/");
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","svelte-spa-router":"eZ6BK"}],"l2a7T":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","svelte-spa-router":"eZ6BK"}],"15S4M":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "lastPageAccessed", ()=>lastPageAccessed);
+var _store = require("svelte/store");
+const lastPageAccessed = (0, _store.writable)("/#/home");
+exports.default = lastPageAccessed;
+
+},{"svelte/store":"6DBki","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l2a7T":[function(require,module,exports) {
 /* src/routes/messages.svelte generated by Svelte v3.55.1 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _internal = require("svelte/internal");
